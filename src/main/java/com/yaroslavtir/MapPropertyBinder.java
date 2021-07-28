@@ -12,7 +12,9 @@ public class MapPropertyBinder implements PropertyBinder {
     public void bind(PropertyBindingContext context) {
 
         context.dependencies().useRootOnly();
+
         IndexSchemaElement schemaElement = context.indexSchemaElement();
+
         IndexSchemaObjectField mapField = schemaElement.objectField("mapField");
         mapField.fieldTemplate(
                 "mapTemplate",
