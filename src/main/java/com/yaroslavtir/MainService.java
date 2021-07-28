@@ -24,10 +24,10 @@ public class MainService {
     }
 
     private void populate() {
-        entityManager.persist(new MainEntity(1L, 3));
-        entityManager.persist(new MainEntity(2L, 2));
-        entityManager.persist(new MainEntity(3L, 4));
-        entityManager.persist(new MainEntity(4L, 1));
+        entityManager.persist(new MainEntity(1L, 3, Utils.generateMap(3)));
+        entityManager.persist(new MainEntity(2L, 2, Utils.generateMap(2)));
+        entityManager.persist(new MainEntity(3L, 4, Utils.generateMap(3)));
+        entityManager.persist(new MainEntity(4L, 1, Utils.generateMap(1)));
     }
 
 }
