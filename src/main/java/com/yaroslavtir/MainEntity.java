@@ -38,11 +38,15 @@ public class MainEntity {
     @Transient
     @PropertyBinding(binder = @PropertyBinderRef(type = MapPropertyBinder.class))
     public Map<String, Integer> getMap() {
+        return generateSomeValuesForMap();
+    }
+
+    private Map<String, Integer> generateSomeValuesForMap() {
+
         return IntStream.range(1, count).boxed()
                 .collect(Collectors.toMap(
-                        index -> getFieldName(index),
+                        this::getFieldName,
                         Function.identity()
-
                 ));
     }
 
