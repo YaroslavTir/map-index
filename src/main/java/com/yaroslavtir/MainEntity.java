@@ -12,6 +12,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.search.mapper.pojo.bridge.mapping.annotation.PropertyBinderRef;
+import org.hibernate.search.mapper.pojo.extractor.mapping.annotation.ContainerExtract;
+import org.hibernate.search.mapper.pojo.extractor.mapping.annotation.ContainerExtraction;
 import org.hibernate.search.mapper.pojo.mapping.definition.annotation.Indexed;
 import org.hibernate.search.mapper.pojo.mapping.definition.annotation.IndexingDependency;
 import org.hibernate.search.mapper.pojo.mapping.definition.annotation.ObjectPath;
@@ -31,13 +33,15 @@ public class MainEntity {
 
     private Integer count;
 
-
-    @IndexingDependency(derivedFrom = {
-            @ObjectPath(@PropertyValue(propertyName = "count"))
-    })
     @Transient
     @PropertyBinding(binder = @PropertyBinderRef(type = MapPropertyBinder.class))
+    @IndexingDependency(derivedFrom = {
+            @ObjectPath(@PropertyValue(propertyName = "count"))
+    },
+            extraction = @ContainerExtraction(extract = ContainerExtract.NO)
+    )
     public Map<String, Integer> getMap() {
+
         return generateSomeValuesForMap();
     }
 

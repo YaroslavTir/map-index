@@ -21,6 +21,7 @@ public class MapPropertyBridge implements PropertyBridge<Map> {
         Map<String, Integer> map = (Map<String, Integer>) bridgedElement;
 
         DocumentElement indexedUserMetadata = target.addObject(mapFieldReference);
-        map.forEach(indexedUserMetadata::addValue);
+        map.forEach((field, value) ->
+                indexedUserMetadata.addValue(field, String.valueOf(value)));
     }
 }
